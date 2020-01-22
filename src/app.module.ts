@@ -1,14 +1,16 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
+import { Connection } from "typeorm";
 
 // APP
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 
 // CATS
-import { CatsController } from "./cats/cats.controller";
-import { CatsService } from "./cats/cats.service";
+// import { CatsController } from "./cats/cats.controller";
+// import { CatsService } from "./cats/cats.service";
 import { CatsModule } from "./cats/cats.module";
+import { Cat } from "./cats/cats.entity";
 
 @Module({
   imports: [
@@ -20,11 +22,13 @@ import { CatsModule } from "./cats/cats.module";
       username: process.env.DB_USER,
       password: process.env.DB_PW,
       database: process.env.DB_NAME,
-      entities: [],
+      entities: [Cat],
       synchronize: true
     })
   ],
-  controllers: [AppController, CatsController],
-  providers: [AppService, CatsService]
+  controllers: [AppController],
+  providers: [AppService]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private readonly connection: Connection) {}
+}
