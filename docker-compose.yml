@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NODE_ENV=development
+    restart: always
+    environment:
+      - PORT=3000
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PW=shobhobe
+      - DB_NAME=shobhobe
+    ports:
+      - 3000:3000
+    depends_on:
+      - postgres
+    volumes:
+      - .:/home/node/app
+      - /home/node/app/node_modules
+    command: yarn start:dev
+
+  postgres:
+    image: postgres:alpine
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      - DB_USER=postgres
+      - DB_PASS=shobhobe
+      - DB_NAME=shobhobe
