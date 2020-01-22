@@ -30,6 +30,6 @@ services:
     ports:
       - 5432:5432
     environment:
-      - DB_USER=postgres
-      - DB_PASS=shobhobe
-      - DB_NAME=shobhobe
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=shobhobe
+      - POSTGRES_DB=shobhobe
