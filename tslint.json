@@ -5,6 +5,7 @@
     "no-unused-expression": true
   },
   "rules": {
+    "prettier": true,
     "quotemark": [true, "single"],
     "member-access": [false],
     "ordered-imports": [false],
@@ -14,5 +15,5 @@
     "arrow-parens": false,
     "object-literal-sort-keys": false
   },
-  "rulesDirectory": []
+  "rulesDirectory": ["tslint-plugin-prettier"]
 }
