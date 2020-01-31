@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 
 services:
   api:
@@ -8,13 +8,8 @@ services:
       args:
         - NODE_ENV=development
     restart: always
-    environment:
-      - PORT=3000
-      - DB_HOST=postgres
-      - DB_PORT=5432
-      - DB_USER=postgres
-      - DB_PW=shobhobe
-      - DB_NAME=shobhobe
+    env_file:
+      - .env
     ports:
       - 3000:3000
     depends_on:
@@ -29,7 +24,5 @@ services:
     restart: always
     ports:
       - 5432:5432
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=shobhobe
-      - POSTGRES_DB=shobhobe
+    env_file:
+      - .env
